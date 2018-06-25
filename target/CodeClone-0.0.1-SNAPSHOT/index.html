@@ -1,0 +1,92 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>  
+  <head>  
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <title>My JSP 'index.jsp' starting page</title>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="pragma" content="no-cache">  
+    <meta http-equiv="cache-control" content="no-cache">  
+    <meta http-equiv="expires" content="0">      
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+    <meta http-equiv="description" content="This is my page">  
+    <!-- 
+    <link rel="stylesheet" type="text/css" href="styles.css"> 
+    -->  
+    
+    <script type="text/javascript">  
+    function search(){
+        $.ajax({
+            url:"http://10.141.221.86:8080/CodeClone/Search",
+            //url:"http://localhost:8080/CodeClone/Search",
+            type:"POST",
+            
+            //contentType:"application/json; charset=utf-8",
+            data:{
+                "index":"issues",
+                "code": $("#code").val()
+            },
+            async:false,
+            // dataType : "json",
+            error: function (xhr, status, errorThrown) {
+                console.log( "Error: " + errorThrown );
+                console.log( "Status: " + status );
+                console.log( xhr );
+                alert("there's error");
+            },
+            success:function (d) {
+                //$("#resultNumber").html(d)
+                var str = d;
+                console.log(d);
+				alert(d);
+            }
+
+        })
+    }
+    function detail(){
+    	var codeid = [1777,1796,1780,1781,1793685,885,684,1763,887,1757,687,1853,690,806,693,802,1758];
+        var code = $("#codeid").val().split(" ");
+    	
+        $.ajax({
+            url:"http://10.141.221.86:8080/CodeClone/Detail",
+            //url:"http://localhost:8080/CodeClone/Detail",
+            type:"POST",
+            traditional: true,
+            //contentType:"application/json; charset=utf-8",
+            data:{
+                "index":"issues",
+                "codeidlist": code
+            },
+            async:false,
+            // dataType : "json",
+            error: function (xhr, status, errorThrown) {
+                console.log( "Error: " + errorThrown );
+                console.log( "Status: " + status );
+                console.log( xhr );
+                alert("there's error");
+            },
+            success:function (d) {
+                //$("#resultNumber").html(d)
+                var str = d;
+                console.log(d);
+				alert(d);
+            }
+
+        })
+    }
+    </script>  
+  </head>  
+  <body>  
+    	<form id="form">
+	        InputCode:<textarea rows="5" cols="100" name="usercode" id="code"></textarea>
+	        <button type="submit" onclick="search()">search</button>
+    	</form>
+    	<form id="form">
+	        Codeid:<input type="text" name="usercodeid" id="codeid">
+	        <button type="submit" onclick="detail()">search</button>
+    	</form>
+    	
+         
+    <br>  
+  </body>  
+</html> 
