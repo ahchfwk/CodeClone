@@ -74,21 +74,36 @@
 
         })
     }
+    
+    function cloneGroup(){
+        $.ajax({
+            //url:"http://10.141.221.86:8080/CodeClone/MultiClone",
+            url:"http://localhost:8080/CodeClone/MultiClone",
+            type:"POST",
+            traditional: true,
+            //contentType:"application/json; charset=utf-8",
+            data:{
+                "index":"issues",
+                "reponame": $("#reponame").val()
+            },
+            async:false,
+            // dataType : "json",
+            error: function (xhr, status, errorThrown) {
+                console.log( "Error: " + errorThrown );
+                console.log( "Status: " + status );
+                console.log( xhr );
+                alert("there's error");
+            },
+            success:function (d) {
+                //$("#resultNumber").html(d)
+                var str = d;
+				alert(d);
+            }
+
+        })
+    }
 	
-	//参数是我返回给你的数据
-	//返回的是一个数组，[开始时间，结束时间]
-	function getTime(d){
-		let timelist = [];
-		let repo = JSON.parse(d);
-		for (var key in repo){
-			for(var release in repo[key]){
-				console.log(release)
-				timelist.push(release.split("/")[1])
-			}
-		}
-		timelist.sort();
-		return [timelist[0].split(" ")[0],timelist[timelist.length-1].split(" ")[0]]
-	}
+	
     </script>  
   </head>  
   <body>  
@@ -100,7 +115,10 @@
 	        Codeid:<input type="text" name="usercodeid" id="codeid">
 	        <button type="submit" onclick="detail()">search</button>
     	</form>
-    	
+    	<form id="form">
+	        reponame:<input type="text" name="repo" id="reponame">
+	        <button type="submit" onclick="cloneGroup()">search</button>
+    	</form>
          
     <br>  
   </body>  

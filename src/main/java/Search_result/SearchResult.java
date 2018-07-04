@@ -97,7 +97,7 @@ public class SearchResult {
 	public static Map<String,Map<String, Set<String[]>>> sort(HashMap<String,Map<String, Set<String[]>>> result){
 		// 对release按日期排序
 		Map<String, Set<String[]>> myRepoMap = new LinkedHashMap<String, Set<String[]>>();
-		System.out.println("result:"+result);
+		//System.out.println("result:"+result);
 		for(Entry<String, Map<String, Set<String[]>>> entry:result.entrySet()) {
 			List<Map.Entry<String, Set<String[]>>> entry_list = new ArrayList<Map.Entry<String,Set<String[]>>>(entry.getValue().entrySet());
 			Collections.sort(entry_list, new Comparator<Map.Entry<String, Set<String[]>>>()
@@ -107,7 +107,7 @@ public class SearchResult {
 					return o1.getKey().split("/")[1].compareTo(o2.getKey().split("/")[1]);
 				}
 			});
-			System.out.println("entrylist:"+entry_list);
+			//System.out.println("entrylist:"+entry_list);
 			Iterator<Map.Entry<String, Set<String[]>>> iterator = entry_list.iterator();
 			while (iterator.hasNext()) {
 				Entry<String, Set<String[]>> repo = iterator.next();
@@ -116,7 +116,7 @@ public class SearchResult {
 			}
 			result.put(entry.getKey(), myRepoMap);
 			myRepoMap = new LinkedHashMap<String, Set<String[]>>();
-			System.out.println("result:"+result);
+			//System.out.println("result:"+result);
 		}
 		
 		// 对整个结果按实例数量倒排序
@@ -156,10 +156,11 @@ public class SearchResult {
 		List<String> result = new LinkedList<String>();
 		for(int i:idList) {
 			//System.out.println(searchCode(i));
-			result.add(searchCode(i).replace("\n", "").replace("\r", "").replace("\\", ""));
+			//result.add(searchCode(i).replace("\n", "").replace("\r", "").replace("\\", ""));
+			result.add(searchCode(i));
 			
 		}
-		System.out.println(result.toString());
+		//System.out.println(result.toString());
 		return result;
 	}
 	

@@ -51,7 +51,7 @@ public class Detail extends HttpServlet {
         response.setHeader("Access-Control-Allow-Methods", "GET,POST");
 		request.setCharacterEncoding("utf-8");
 		String[] codeidlist = request.getParameterValues("codeidlist");
-		System.out.println("code id to be search is:"+Arrays.toString(codeidlist));
+		//System.out.println("code id to be search is:"+Arrays.toString(codeidlist));
 		String jsonresult = "";
 		
 		List<Integer> idList = new LinkedList<>();
@@ -61,14 +61,14 @@ public class Detail extends HttpServlet {
 		List<String> result = searchResult.detail(idList);
 		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().disableHtmlEscaping().create();
 		jsonresult = gson.toJson(result);
-		System.out.println("detail json result is:"+jsonresult);
+		//System.out.println("detail json result is:"+jsonresult);
 		response.getWriter().write(jsonresult);
 	}
 	
 	
 	public void destroy() {
 		searchResult.close();
-		System.out.println("detail destroy");
+		//System.out.println("detail destroy");
 	}
 
 }

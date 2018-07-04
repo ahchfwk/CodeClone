@@ -16,4 +16,12 @@
     <servlet-name>Detail</servlet-name>
     <url-pattern>/Detail</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>MultiClone</servlet-name>
+    <servlet-class>servlet.MultiClone</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MultiClone</servlet-name>
+    <url-pattern>/MultiClone</url-pattern>
+  </servlet-mapping>
 </web-app>

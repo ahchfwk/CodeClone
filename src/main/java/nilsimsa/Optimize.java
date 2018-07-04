@@ -1,9 +1,7 @@
 package nilsimsa;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -14,14 +12,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.Scanner;
-
-import javax.net.ssl.HandshakeCompletedListener;
-import javax.swing.text.Segment;
-
-import org.apache.commons.net.PrintCommandListener;
-import org.apache.hadoop.fs.shell.Count;
-import org.slf4j.helpers.FormattingTuple;
 
 import code2token.Word;
 import method_analyze.Id2methodBody;
@@ -151,8 +141,8 @@ public class Optimize {
 		}
 		
 		System.out.println("hash is:"+hash+"////"+"countFor1 is:"+countFor1);
-		//String hashfile = "/home/fdse/esdata/fwk/BigCode/hash_separate_by_1_redundance/hash"+(countFor1-3)+"-"+(countFor1+3)+".txt";
-		String hashfile = "C:\\Users\\fwk\\Desktop\\java\\hash\\hash_separate_by_1_redundance\\hash"+(countFor1-3)+"-"+(countFor1+3)+".txt";
+		String hashfile = "/home/fdse/esdata/fwk/BigCode/hash_separate_by_1_redundance/hash"+(countFor1-3)+"-"+(countFor1+3)+".txt";
+		//String hashfile = "C:\\Users\\fwk\\Desktop\\java\\hash\\hash_separate_by_1_redundance\\hash"+(countFor1-3)+"-"+(countFor1+3)+".txt";
 		prepare(hashfile);
 	}
 	
@@ -170,15 +160,15 @@ public class Optimize {
 //			bReader.close();
 			
 			//read hash file by nio
-			System.out.println("start");
+			//System.out.println("start");
 			int bufSize = 500;
 			File fin = new File(hashfile);
 			FileChannel fcin = new RandomAccessFile(fin, "r").getChannel();
 			ByteBuffer rBuffer = ByteBuffer.allocate(bufSize);
 			readFileByLine(bufSize, fcin, rBuffer);
 			fcin.close();
-			System.out.println(hashlinelist.subList(0, 10));
-			System.out.println("end");
+			//System.out.println(hashlinelist.subList(0, 10));
+			//System.out.println("end");
 			
 			//从每行提取id和codehash和tokenhash
 			for(String s:hashlinelist) {
@@ -327,9 +317,9 @@ public class Optimize {
 			try {
 				
 				String token = new Word().segment(code,true).getTokenStr();
-				System.out.println("token is:"+token);
+				//System.out.println("token is:"+token);
 				String hash = new Nilsimsa(token).toHexDigest();
-				System.out.println("hash is:"+hash);
+				//System.out.println("hash is:"+hash);
 				//动态加载来了
 				dynamicLoad(hash);
 				if (Nilsimsa.compare("0000000000000000000000000000000000000000000000000000000000000000", hash)<3 || 

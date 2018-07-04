@@ -66,12 +66,12 @@ public class Search extends HttpServlet {
 		HashMap<String,Map<String, Set<String[]>>> result = searchResult.search(string.replace(";", ";\n").replace("{", "{\n"));
 		Gson gson = new GsonBuilder().enableComplexMapKeySerialization().disableHtmlEscaping().create();
 		jsonresult = gson.toJson(SearchResult.sort(result));
-		System.out.println("the search json result is:"+jsonresult);
+		//System.out.println("the search json result is:"+jsonresult);
 		response.getWriter().write(jsonresult);
 	}
 	
 	public void destroy() {
-		System.out.println("search destroy");
+		//System.out.println("search destroy");
 		searchResult.close();
 	}
 	
